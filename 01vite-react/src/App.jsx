@@ -1,9 +1,9 @@
-import Chai from "./chai"
+import CodeBlock from "./chai"
 
 function App() {
   return (
   <>
-  <Chai/>
+  <CodeBlock/>
   <h1>headin 1</h1>
   </>
   )
