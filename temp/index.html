@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Gradient Theme - Student Community Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .figma-frame {
+            width: 1440px;
+            height: 1024px;
+            margin: 20px auto;
+            background: white;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .design-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .top-nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #667eea;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: #f8f9fa;
+            font-size: 0.95rem;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 20px;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr 280px;
+            gap: 30px;
+            padding: 30px;
+            height: calc(100% - 80px);
+        }
+
+        .left-sidebar {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .menu-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: currentColor;
+            opacity: 0.7;
+        }
+
+        .feed-container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        .create-post {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .create-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .create-input:focus {
+            border-color: #667eea;
+            background: white;
+        }
+
+        .create-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .media-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .media-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .media-btn:hover {
+            background: #e9ecef;
+        }
+
+        .post-btn {
+            padding: 10px 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .post-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-info h4 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .user-meta {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .post-content {
+            margin-bottom: 20px;
+        }
+
+        .post-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .content-media {
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            border: 2px dashed #ddd;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #f8f9fa;
+            color: #666;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .action-btn.liked {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .right-sidebar {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            height: fit-content;
+        }
+
+        .trending-item {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .trending-item:hover {
+            background: #e9ecef;
+        }
+
+        .trending-tag {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .trending-count {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .floating-create {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+
+        .floating-create:hover {
+            transform: scale(1.1);
+        }
+
+        .design-info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="figma-frame">
+        <div class="design-info">Modern Gradient Theme - 1440x1024px</div>
+        <div class="design-content">
+            <div class="top-nav">
+                <div class="logo">EduConnect</div>
+                <div class="nav-items">
+                    <a href="#" class="nav-item active">Feed</a>
+                    <a href="#" class="nav-item">Discover</a>
+                    <a href="#" class="nav-item">Groups</a>
+                    <a href="#" class="nav-item">Events</a>
+                    <a href="#" class="nav-item">Resources</a>
+                </div>
+                <div class="user-profile">
+                    <div class="profile-avatar">JD</div>
+                </div>
+            </div>
+
+            <div class="main-layout">
+                <div class="left-sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Navigation</div>
+                        <a href="#" class="menu-item active">
+                            <div class="menu-icon"></div>
+                            Home Feed
+                        </a>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            My Profile
+                        </a>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            Saved Posts
+                        </a>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            Settings
+                        </a>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Quick Links</div>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            Campus News
+                        </a>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            Study Groups
+                        </a>
+                        <a href="#" class="menu-item">
+                            <div class="menu-icon"></div>
+                            Help Center
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feed-container">
+                    <div class="create-post">
+                        <input type="text" class="create-input" placeholder="Share something with your community...">
+                        <div class="create-actions">
+                            <div class="media-buttons">
+                                <button class="media-btn">📷 Photo</button>
+                                <button class="media-btn">🎥 Video</button>
+                                <button class="media-btn">📊 Poll</button>
+                            </div>
+                            <button class="post-btn">Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-avatar">JS</div>
+                            <div class="user-info">
+                                <h4>John Smith</h4>
+                                <div class="user-meta">Computer Science • 2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-text">Just finished my final project for Data Structures! Here's a quick demo of the sorting algorithm visualization I built.</div>
+                            <div class="content-media">🎥 Video Content Preview</div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn liked">❤️ 24 Likes</button>
+                            <button class="action-btn">💬 8 Comments</button>
+                            <button class="action-btn">📤 Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-avatar">EM</div>
+                            <div class="user-info">
+                                <h4>Emma Martinez</h4>
+                                <div class="user-meta">Digital Marketing • 4 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-text">Quick study tip: Use the Pomodoro Technique for better focus! 25 minutes of work, 5 minute break. Game changer! 🍅</div>
+                            <div class="content-media">📱 Short Video Tips</div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">❤️ 42 Likes</button>
+                            <button class="action-btn">💬 15 Comments</button>
+                            <button class="action-btn">📤 Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="user-avatar">AR</div>
+                            <div class="user-info">
+                                <h4>Alex Rivera</h4>
+                                <div class="user-meta">Graphic Design • 6 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-text">Working on a new logo design for the student newspaper. What do you think about this concept?</div>
+                            <div class="content-media">🎨 Design Showcase</div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">❤️ 18 Likes</button>
+                            <button class="action-btn">💬 6 Comments</button>
+                            <button class="action-btn">📤 Share</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Trending Now</div>
+                        <div class="trending-item">
+                            <div class="trending-tag">#FinalExams</div>
+                            <div class="trending-count">1,234 posts</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-tag">#StudyTips</div>
+                            <div class="trending-count">892 posts</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-tag">#ProjectShowcase</div>
+                            <div class="trending-count">567 posts</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-tag">#CampusLife</div>
+                            <div class="trending-count">423 posts</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Suggested Groups</div>
+                        <div class="trending-item">
+                            <div class="trending-tag">Web Dev Club</div>
+                            <div class="trending-count">245 members</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-tag">Design Society</div>
+                            <div class="trending-count">189 members</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-tag">Study Buddies</div>
+                            <div class="trending-count">512 members</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="floating-create">+</button>
+        </div>
+    </div>
+</body>
+</html>
